@@ -235,27 +235,61 @@ public class Menues {
         System.out.println("A");
         System.out.println("B");
         System.out.println("C");
-        char firstAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+        char firstAnswer;
+        while (true) {
+            firstAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+                if (firstAnswer == 'A' || firstAnswer == 'B' || firstAnswer == 'C')
+                    break;
+            System.out.println("Wrong value entered");
+
+        }
         System.out.println(testEgzamTrueAnswers.getSecondQuestion());
         System.out.println("A");
         System.out.println("B");
         System.out.println("C");
-        char secondAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+        char secondAnswer;
+        while (true) {
+            secondAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+            if (secondAnswer == 'A' || secondAnswer == 'B' || secondAnswer == 'C')
+                break;
+            System.out.println("Wrong value entered");
+
+        }
         System.out.println(testEgzamTrueAnswers.getThirdQuestion());
         System.out.println("A");
         System.out.println("B");
         System.out.println("C");
-        char thirdAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+        char thirdAnswer;
+        while (true) {
+            thirdAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+            if (thirdAnswer == 'A' || thirdAnswer == 'B' || thirdAnswer == 'C')
+                break;
+            System.out.println("Wrong value entered");
+
+        }
         System.out.println(testEgzamTrueAnswers.getFourthQuestion());
         System.out.println("A");
         System.out.println("B");
         System.out.println("C");
-        char fourthAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+        char fourthAnswer;
+        while (true) {
+            fourthAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+            if (fourthAnswer == 'A' || fourthAnswer == 'B' || fourthAnswer == 'C')
+                break;
+            System.out.println("Wrong value entered");
+        }
         System.out.println(testEgzamTrueAnswers.getFifthQuestion());
         System.out.println("A");
         System.out.println("B");
         System.out.println("C");
-        char fifthAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+        char fifthAnswer;
+        while (true) {
+            fifthAnswer = scanner.next().toUpperCase(Locale.ROOT).charAt(0);
+            if (fifthAnswer == 'A' || fifthAnswer == 'B' || fifthAnswer == 'C')
+                break;
+            System.out.println("Wrong value entered");
+
+        }
         StatisticsService statisticsService = new StatisticsService();
         TestEgzamAnswersService testEgzamAnswersService = new TestEgzamAnswersService();
         TestEgzamAnswers testEgzamAnswers = new TestEgzamAnswers(firstAnswer,secondAnswer, thirdAnswer, fourthAnswer, fifthAnswer,exam, student);
