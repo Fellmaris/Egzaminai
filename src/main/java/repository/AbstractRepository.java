@@ -16,9 +16,7 @@ public abstract class AbstractRepository {
         {
             session = SessionFactoryProvider.getInstance().getSessionFactory().openSession();
             transaction = session.beginTransaction();
-
             consumer.accept(session);
-
             transaction.commit();
         } catch(Exception e) {
             System.out.println(e);

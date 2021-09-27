@@ -5,22 +5,24 @@ import service.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Menues {
+
     public void mainMenu() {
         EgzamService egzamService = new EgzamService();
-        Exam testOOP = new Exam("OOP", "Test");
-        Exam testDB = new Exam("DB","Test");
         StudentService studentService = new StudentService();
         studentService.createStudent("Arturas", "Cerniauskas");
+        studentService.createStudent("Dainius", "Gulbinas");
+        Exam testOOP = new Exam("OOP", "Test");
+        Exam testDB = new Exam("DB","Test");
         egzamService.createEgzam(testOOP);
         egzamService.createEgzam(testDB);
         TestEgzamTrueAnswerService testEgzamTrueAnswerService = new TestEgzamTrueAnswerService();
         testEgzamTrueAnswerService.createTestEgzamAnswers(new TestEgzamTrueAnswers('A','A','A','A','A',"Hello1?","Hello2?","Hello3?","Hello4?","Hello5?", testOOP));
-        testEgzamTrueAnswerService.createTestEgzamAnswers(new TestEgzamTrueAnswers('B','B','B','B','A',"Goodbye1?","Goodbye2?","Goodbye3?","Goodbye4?","Goodbye5?", testDB));
-
+        testEgzamTrueAnswerService.createTestEgzamAnswers(new TestEgzamTrueAnswers('B','B','B','B','B',"Goodbye1?","Goodbye2?","Goodbye3?","Goodbye4?","Goodbye5?", testDB));
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("------------------");
@@ -59,7 +61,6 @@ public class Menues {
     }
 
     private boolean passwordCheck(String enteredPassword) {
-
                 String password = "123";
                 String encryptedpassword = null;
                 try {
@@ -71,7 +72,6 @@ public class Menues {
                         s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
                     }
                     encryptedpassword = s.toString();
-
                     m.update(enteredPassword.getBytes());
                     bytes = m.digest();
                     s.delete(0,s.length());
@@ -95,7 +95,6 @@ public class Menues {
 
     private void showTests() {
         EgzamService egzamService = new EgzamService();
-
         if (egzamService.getExams() != null) {
             egzamService.getExams().forEach(exam -> System.out.println("------------------\nEgzam ID: " + exam.getId() + "\nEgzam type: " + exam.getType() + "" +
                     "\nEgzam name" + exam.getName()));
@@ -111,7 +110,6 @@ public class Menues {
 
     private void updateExam(Scanner scanner) {
         TestEgzamTrueAnswerService testEgzamTrueAnswerService = new TestEgzamTrueAnswerService();
-
         System.out.println("Enter ID of exam you want to update:");
         Long enteredExamID = scanner.nextLong();
         TestEgzamTrueAnswers testEgzamTrueAnswers = testEgzamTrueAnswerService.getTestEgzamTrueAnswers(enteredExamID);
@@ -129,36 +127,66 @@ public class Menues {
             case 1:
                 System.out.println("Set first question:");
                 testEgzamTrueAnswers.setFirstQuestion(scanner.next());
-                System.out.println("Set correct answer to question one");
-                testEgzamTrueAnswers.setFirstAnswer(scanner.next().charAt(0));
+                while (true) {
+                    System.out.println("Set correct answer to question one");
+                    testEgzamTrueAnswers.setFirstAnswer(scanner.next().toUpperCase(Locale.ROOT).charAt(0));
+                    char answerChoice = testEgzamTrueAnswers.getFirstAnswer();
+                    if (answerChoice == 'A' || answerChoice == 'B' || answerChoice == 'C')
+                        break;
+                    System.out.println("Wrong value entered");
+                }
                 testEgzamTrueAnswerService.update(testEgzamTrueAnswers);
                 break;
             case 2:
                 System.out.println("Set second question:");
                 testEgzamTrueAnswers.setFirstQuestion(scanner.next());
-                System.out.println("Set correct answer to question two");
-                testEgzamTrueAnswers.setFirstAnswer(scanner.next().charAt(0));
+                while (true) {
+                    System.out.println("Set correct answer to question two");
+                    testEgzamTrueAnswers.setSecondAnswer(scanner.next().toUpperCase(Locale.ROOT).charAt(0));
+                    char answerChoice = testEgzamTrueAnswers.getSecondAnswer();
+                    if (answerChoice == 'A' || answerChoice == 'B' || answerChoice == 'C')
+                        break;
+                    System.out.println("Wrong value entered");
+                }
                 testEgzamTrueAnswerService.update(testEgzamTrueAnswers);
                 break;
             case 3:
                 System.out.println("Set third question:");
-                testEgzamTrueAnswers.setFirstQuestion(scanner.next());
-                System.out.println("Set correct answer to question three");
-                testEgzamTrueAnswers.setFirstAnswer(scanner.next().charAt(0));
+                testEgzamTrueAnswers.setThirdQuestion(scanner.next());
+                while (true) {
+                    System.out.println("Set correct answer to question three");
+                    testEgzamTrueAnswers.setThirdAnswer(scanner.next().toUpperCase(Locale.ROOT).charAt(0));
+                    char answerChoice = testEgzamTrueAnswers.getThirdAnswer();
+                    if (answerChoice == 'A' || answerChoice == 'B' || answerChoice == 'C')
+                        break;
+                    System.out.println("Wrong value entered");
+                }
                 testEgzamTrueAnswerService.update(testEgzamTrueAnswers);
                 break;
             case 4:
                 System.out.println("Set fourth question:");
-                testEgzamTrueAnswers.setFirstQuestion(scanner.next());
-                System.out.println("Set correct answer to question four");
-                testEgzamTrueAnswers.setFirstAnswer(scanner.next().charAt(0));
+                testEgzamTrueAnswers.setFourthQuestion(scanner.next());
+                while (true) {
+                    System.out.println("Set correct answer to question four");
+                    testEgzamTrueAnswers.setFourthAnswer(scanner.next().toUpperCase(Locale.ROOT).charAt(0));
+                    char answerChoice = testEgzamTrueAnswers.getFourthAnswer();
+                    if (answerChoice == 'A' || answerChoice == 'B' || answerChoice == 'C')
+                        break;
+                    System.out.println("Wrong value entered");
+                }
                 testEgzamTrueAnswerService.update(testEgzamTrueAnswers);
                 break;
             case 5:
                 System.out.println("Set fifth question:");
-                testEgzamTrueAnswers.setFirstQuestion(scanner.next());
-                System.out.println("Set correct answer to question five");
-                testEgzamTrueAnswers.setFirstAnswer(scanner.next().charAt(0));
+                testEgzamTrueAnswers.setFifthQuestion(scanner.next());
+                while (true) {
+                    System.out.println("Set correct answer to question fifth");
+                    testEgzamTrueAnswers.setFourthAnswer(scanner.next().toUpperCase(Locale.ROOT).charAt(0));
+                    char answerChoice = testEgzamTrueAnswers.getFourthAnswer();
+                    if (answerChoice == 'A' || answerChoice == 'B' || answerChoice == 'C')
+                        break;
+                    System.out.println("Wrong value entered");
+                }
                 testEgzamTrueAnswerService.update(testEgzamTrueAnswers);
                 break;
             default:
@@ -169,9 +197,17 @@ public class Menues {
     }
 
     private void logIn(Scanner scanner) {
-        System.out.println("Enter user ID:");
-        Long studentId = scanner.nextLong();
+        Long studentId = null;
         StudentService studentService = new StudentService();
+        while (true){
+            System.out.println("Enter user ID:");
+            studentId = scanner.nextLong();
+            if (studentService.getStudent(studentId)== null){
+                System.out.println("There is no such user");
+            } else{
+                break;
+            }
+        }
         Student student = studentService.getStudent(studentId);
         studentMenu(student, scanner);
     }
@@ -215,19 +251,28 @@ public class Menues {
 
     private void checkExamResults(Student student) {
         ResultService resultService = new ResultService();
-        Result result = resultService.getResult(student.getId());
-        if (result == null){
+        List<Result> results = resultService.getResults(student.getId());
+        if (results == null){
             System.out.println("No results found");
             return;
         }
-        System.out.println(result.getExam().toString() + "\n Result: " + result.getResult());
+            results.forEach(result -> System.out.println("------------------\nEgzam type: " + result.getExam().getType() + "" +
+                    "\nResult " + result.getResult()));
     }
 
     private void solveExam(Student student, Scanner scanner) {
-        System.out.println("Pasirinkite egzamina pagal ID:");
-        showTests();
-        Long examID = scanner.nextLong();
         EgzamService egzamService = new EgzamService();
+        Long examID =0L;
+        while (true){
+            System.out.println("Pasirinkite egzamina pagal ID:");
+            showTests();
+           examID = scanner.nextLong();
+        if (egzamService.getExam(examID)== null){
+            System.out.println("There is no such exam");
+        } else{
+            break;
+        }
+        }
         Exam exam = egzamService.getExam(examID);
         TestEgzamTrueAnswerService testEgzamTrueAnswerService = new TestEgzamTrueAnswerService();
         TestEgzamTrueAnswers testEgzamTrueAnswers = testEgzamTrueAnswerService.getTestEgzamTrueAnswers(examID);
@@ -241,7 +286,6 @@ public class Menues {
                 if (firstAnswer == 'A' || firstAnswer == 'B' || firstAnswer == 'C')
                     break;
             System.out.println("Wrong value entered");
-
         }
         System.out.println(testEgzamTrueAnswers.getSecondQuestion());
         System.out.println("A");
@@ -253,7 +297,6 @@ public class Menues {
             if (secondAnswer == 'A' || secondAnswer == 'B' || secondAnswer == 'C')
                 break;
             System.out.println("Wrong value entered");
-
         }
         System.out.println(testEgzamTrueAnswers.getThirdQuestion());
         System.out.println("A");
@@ -265,7 +308,6 @@ public class Menues {
             if (thirdAnswer == 'A' || thirdAnswer == 'B' || thirdAnswer == 'C')
                 break;
             System.out.println("Wrong value entered");
-
         }
         System.out.println(testEgzamTrueAnswers.getFourthQuestion());
         System.out.println("A");
@@ -288,17 +330,15 @@ public class Menues {
             if (fifthAnswer == 'A' || fifthAnswer == 'B' || fifthAnswer == 'C')
                 break;
             System.out.println("Wrong value entered");
-
         }
         StatisticsService statisticsService = new StatisticsService();
         TestEgzamAnswersService testEgzamAnswersService = new TestEgzamAnswersService();
         TestEgzamAnswers testEgzamAnswers = new TestEgzamAnswers(firstAnswer,secondAnswer, thirdAnswer, fourthAnswer, fifthAnswer,exam, student);
         testEgzamAnswersService.createTestEgzamAnswers(testEgzamAnswers);
         ResultService resultService = new ResultService();
-        Result result = resultService.getResult(student.getId());
         Statistics statistics = updateStatistics (testEgzamAnswers, student ,testEgzamTrueAnswers, exam, statisticsService);
         if (resultService.getResult(student.getId()) != null){
-            resultService.update(exam,student, getResult(testEgzamAnswers,testEgzamTrueAnswers,exam,student).getResult(), student.getId());
+            resultService.update(getResult(testEgzamAnswers,testEgzamTrueAnswers,exam,student).getResult(), student.getId());
         } else {
             resultService.createResult(student,exam,getResult(testEgzamAnswers,testEgzamTrueAnswers,exam,student).getResult());
         }

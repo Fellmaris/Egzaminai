@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 public class Statistics {
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;

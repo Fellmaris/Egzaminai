@@ -4,8 +4,8 @@ import entity.TestEgzamTrueAnswers;
 import repository.TestEgzamTrueAnswersRepository;
 
 public class TestEgzamTrueAnswerService {
-
     private final TestEgzamTrueAnswersRepository testEgzamTrueAnswersRepository;
+
     public TestEgzamTrueAnswerService (){testEgzamTrueAnswersRepository = new TestEgzamTrueAnswersRepository();}
 
     public void createTestEgzamAnswers (TestEgzamTrueAnswers testEgzamTrueAnswers){testEgzamTrueAnswersRepository.createNewTestEgzamTrueAnswers(testEgzamTrueAnswers);}

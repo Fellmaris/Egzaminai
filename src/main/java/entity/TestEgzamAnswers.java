@@ -11,10 +11,10 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 public class TestEgzamAnswers {
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-
     private char firstAnswer;
     private char secondAnswer;
     private char thirdAnswer;

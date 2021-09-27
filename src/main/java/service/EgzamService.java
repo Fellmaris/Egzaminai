@@ -1,7 +1,6 @@
 package service;
 
 import entity.Exam;
-import entity.Student;
 import repository.EgzamRepository;
 
 import java.util.List;

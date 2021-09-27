@@ -1,7 +1,6 @@
 package repository;
 
 import entity.Exam;
-import entity.Student;
 
 import java.util.List;
 

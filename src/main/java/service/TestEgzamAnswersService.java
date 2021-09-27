@@ -10,5 +10,4 @@ public class TestEgzamAnswersService {
 
     public void createTestEgzamAnswers (TestEgzamAnswers testEgzamAnswers){testEgzamAnswersRepository.createNewTestEgzamAnswers(testEgzamAnswers);}
 
-    public TestEgzamAnswers getTestEgzamAnswers (Long studentId){return testEgzamAnswersRepository.getTestEgzamAnswers(studentId);}
 }

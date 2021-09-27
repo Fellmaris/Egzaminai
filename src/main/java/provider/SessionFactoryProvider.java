@@ -25,7 +25,6 @@ public class SessionFactoryProvider {
         configuration.addAnnotatedClass(TestEgzamTrueAnswers.class);
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(properties).build();
         sessionFactory = configuration.buildSessionFactory(registry);
-
         } catch(Exception e) {
             System.out.println(e);
         }
@@ -53,7 +52,6 @@ public class SessionFactoryProvider {
         properties.put(Environment.SHOW_SQL, "true");
 //        properties.put(Environment.HBM2DDL_AUTO, "update");
         properties.put(Environment.HBM2DDL_AUTO, "create-drop");
-
         return properties;
     }
 }

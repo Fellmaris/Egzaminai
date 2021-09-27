@@ -5,6 +5,8 @@ import entity.Result;
 import entity.Student;
 import repository.ResultRepository;
 
+import java.util.List;
+
 public class ResultService {
 
     private final ResultRepository resultRepository;
@@ -21,7 +23,9 @@ public class ResultService {
 
     public Result getResult(Long studentId){return resultRepository.getResult(studentId);}
 
-    public void update (Exam exam, Student student, double resultDouble, Long studentId){
+    public List<Result> getResults (Long studentId) {return resultRepository.getResults(studentId);}
+
+    public void update (double resultDouble, Long studentId){
         Result result = resultRepository.getResult(studentId);
 
         if (result == null){

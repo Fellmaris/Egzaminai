@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class TestEgzamTrueAnswers {
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
